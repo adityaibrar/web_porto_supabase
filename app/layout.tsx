@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Flutter Developer Portfolio - Professional Mobile App Developer",
+  title: "Aditya Ibrar Abdillah - Professional Mobile App Developer",
   description:
     "Professional Flutter Developer Portfolio showcasing mobile app development expertise, projects, and technical skills in cross-platform development.",
   keywords: [
@@ -20,17 +20,21 @@ export const metadata: Metadata = {
     "iOS",
     "Dart",
     "Portfolio",
+    "Aditya Ibrar",
+    "Aditya Ibrar Abdillah",
+    "Aditya Flutter",
+    "Ibrar Flutter",
   ],
-  authors: [{ name: "Flutter Developer" }],
+  authors: [{ name: "Aditya Ibrar Abdillah" }],
   openGraph: {
-    title: "Flutter Developer Portfolio",
+    title: "Aditya Ibrar Abdillah",
     description:
       "Professional Flutter Developer Portfolio showcasing mobile app development expertise",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Flutter Developer Portfolio",
+    title: "Aditya Ibrar Abdillah",
     description:
       "Professional Flutter Developer Portfolio showcasing mobile app development expertise",
   },
