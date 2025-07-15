@@ -7,12 +7,76 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { type Profile } from "@/app/page";
+import { useState } from "react";
 
 interface ContactSectionProps {
   profile: Profile | null;
 }
 
 export function ContactSection({ profile }: ContactSectionProps) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate form data
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.subject ||
+      !formData.message
+    ) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    // Create WhatsApp message
+    const whatsappMessage = `*Message From Website Portofilio*
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Subject:* ${formData.subject}
+*Message:* ${formData.message}`;
+
+    // Get phone number from profile (remove any non-numeric characters except +)
+    const phoneNumber = profile?.phone?.replace(/[^\d+]/g, "") || "";
+
+    if (!phoneNumber) {
+      alert("WhatsApp number not configured");
+      return;
+    }
+
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
+
+    // Open WhatsApp
+    window.open(whatsappUrl, "_blank");
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
   return (
     <section id="contact" className="py-20 px-6">
       <div className="max-w-4xl mx-auto">
@@ -83,36 +147,55 @@ export function ContactSection({ profile }: ContactSectionProps) {
           >
             <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm">
               <CardContent className="p-8">
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
                       placeholder="Your Name"
                       className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-400"
+                      required
                     />
                   </div>
                   <div>
                     <Input
+                      name="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       placeholder="Your Email"
                       className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-400"
+                      required
                     />
                   </div>
                   <div>
                     <Input
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
                       placeholder="Subject"
                       className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-400"
+                      required
                     />
                   </div>
                   <div>
                     <Textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
                       placeholder="Your message..."
                       rows={5}
                       className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-400 resize-none"
+                      required
                     />
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white transition-all duration-300 hover:scale-105">
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white transition-all duration-300 hover:scale-105"
+                  >
                     <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                    Send to WhatsApp
                   </Button>
                 </form>
               </CardContent>
