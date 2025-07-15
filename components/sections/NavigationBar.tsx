@@ -44,7 +44,7 @@ export function NavigationBar({
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+    <nav className="fixed top-0 w-full z-50 bg-black/10 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -85,7 +85,7 @@ export function NavigationBar({
               variant="ghost"
               size="sm"
               onClick={toggleMobileMenu}
-              className="text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50"
+              className="text-gray-300 hover:text-cyan-400 hover:bg-white/10"
             >
               <motion.div
                 animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
@@ -116,7 +116,7 @@ export function NavigationBar({
                 animate={{ y: 0 }}
                 exit={{ y: -20 }}
                 transition={{ duration: 0.2 }}
-                className="pt-4 pb-2 space-y-2 border-t border-gray-800 mt-4"
+                className="pt-4 pb-2 space-y-2 border-t border-white/10 mt-4"
               >
                 {navItems.map((item, index) => (
                   <motion.button
@@ -129,7 +129,7 @@ export function NavigationBar({
                     className={`block w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                       activeSection === item.id
                         ? "text-cyan-400 bg-cyan-500/10 border-l-4 border-cyan-400"
-                        : "text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50"
+                        : "text-gray-300 hover:text-cyan-400 hover:bg-white/10"
                     }`}
                   >
                     {item.name}
