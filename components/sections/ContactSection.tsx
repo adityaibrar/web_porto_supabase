@@ -46,7 +46,7 @@ export function ContactSection({ profile }: ContactSectionProps) {
     }
 
     // Create WhatsApp message
-    const whatsappMessage = `*Message From Website Portofilio*
+    const whatsappMessage = `*Message From Website Portofolio*
 *Name:* ${formData.name}
 *Email:* ${formData.email}
 *Subject:* ${formData.subject}
