@@ -15,11 +15,6 @@ export const metadata: Metadata = {
   keywords: [
     "Flutter Developer",
     "Mobile App Development",
-    "Cross-Platform",
-    "Android",
-    "iOS",
-    "Dart",
-    "Portfolio",
     "Aditya Ibrar",
     "Aditya Ibrar Abdillah",
     "Aditya Flutter",

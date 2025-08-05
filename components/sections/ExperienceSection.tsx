@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { type Experience } from "@/app/page";
 
@@ -65,33 +65,37 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                   transition={{ duration: 0.8 }}
                 >
                   <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300">
-                    <CardContent className="p-8">
-                      <div className="flex items-start space-x-4">
-                        <div className={`p-3 ${colorScheme.bg} rounded-lg`}>
+                    <CardHeader>
+                      <div className="flex items-center space-x-4">
+                        <div className={`p-3 ${colorScheme.bg} rounded-lg `}>
                           <Briefcase
                             className={`w-8 h-8 ${colorScheme.text}`}
                           />
                         </div>
-                        <div className="flex-1">
-                          <div className="flex justify-between items-start mb-4">
-                            <div>
-                              <h3 className="text-xl font-bold text-white mb-2">
-                                {exp.position}
-                              </h3>
-                              <p className={`font-medium ${colorScheme.text}`}>
-                                {exp.company}
-                              </p>
-                            </div>
-                            <Badge
-                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border}`}
-                            >
-                              {new Date(exp.start_date).getFullYear()} -{" "}
-                              {exp.end_date
-                                ? new Date(exp.end_date).getFullYear()
-                                : "Present"}
-                            </Badge>
+                        <div className="flex-1 flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-2">
+                              {exp.position}
+                            </h3>
+                            <p className={`font-medium ${colorScheme.text}`}>
+                              {exp.company}
+                            </p>
                           </div>
-                          <p className="text-gray-300 mb-4">
+                          <Badge
+                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto`}
+                          >
+                            {new Date(exp.start_date).getFullYear()} -{" "}
+                            {exp.end_date
+                              ? new Date(exp.end_date).getFullYear()
+                              : "Present"}
+                          </Badge>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-start">
+                        <div className="flex-1">
+                          <p className="text-gray-300 mb-4 text-sm md:text-base">
                             {exp.description}
                           </p>
                           <div className="flex flex-wrap gap-2">
@@ -99,7 +103,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                               <Badge
                                 key={tech}
                                 variant="secondary"
-                                className="bg-gray-800 text-gray-300"
+                                className="bg-gray-800 text-gray-300 text-xs md:text-sm"
                               >
                                 {tech}
                               </Badge>

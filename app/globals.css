@@ -49,6 +49,7 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   body {
@@ -56,6 +57,8 @@
     background: radial-gradient(ellipse at top, rgba(120, 119, 198, 0.1) 0%, transparent 70%),
       linear-gradient(180deg, rgb(5, 5, 5) 0%, rgb(0, 0, 0) 100%);
     min-height: 100vh;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
