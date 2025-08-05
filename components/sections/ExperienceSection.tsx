@@ -82,7 +82,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                             </p>
                           </div>
                           <Badge
-                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto`}
+                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto hover:bg-inherit hover:text-inherit`}
                           >
                             {new Date(exp.start_date).getFullYear()} -{" "}
                             {exp.end_date
