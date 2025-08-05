@@ -91,7 +91,8 @@ export function CertificatesSection({
                             asChild
                             size="sm"
                             variant="outline"
-                            className="border-gray-700 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} hover:text-white hover:bg-white-400 hover:border-white`}
+                            // className="border-gray-700 text-gray-300 hover:border-cyan-400 hover:text-cyan-400 hover:bg-background"
                           >
                             <a
                               href={cert.credential_url}

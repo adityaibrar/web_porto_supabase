@@ -1,7 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { FolderOpen, ExternalLink, Github, X, Eye, ChevronDown } from "lucide-react";
+import {
+  FolderOpen,
+  ExternalLink,
+  Github,
+  X,
+  Eye,
+  ChevronDown,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -46,7 +53,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const openModal = (project: Project) => {
     setSelectedProject(project);
     setShowScrollIndicator(true);
-    
+
     // Hide scroll indicator after 3 seconds
     setTimeout(() => {
       setShowScrollIndicator(false);
@@ -199,15 +206,15 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
               onClick={closeModal}
             >
-                              <motion.div
+              <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ type: "spring", damping: 20, stiffness: 300 }}
                 className="bg-gray-900/95 border border-gray-800 rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto backdrop-blur-md relative"
                 style={{
-                  msOverflowStyle: 'none',
-                  scrollbarWidth: 'none',
+                  msOverflowStyle: "none",
+                  scrollbarWidth: "none",
                 }}
                 onScroll={handleScroll}
                 onClick={(e) => e.stopPropagation()}
@@ -225,10 +232,10 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                       <div className="bg-cyan-500/20 border border-cyan-500/30 rounded-full p-2 backdrop-blur-sm">
                         <motion.div
                           animate={{ y: [0, 8, 0] }}
-                          transition={{ 
-                            repeat: Infinity, 
-                            duration: 1.5, 
-                            ease: "easeInOut" 
+                          transition={{
+                            repeat: Infinity,
+                            duration: 1.5,
+                            ease: "easeInOut",
                           }}
                         >
                           <ChevronDown className="w-5 h-5 text-cyan-400" />
@@ -290,7 +297,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                       <Button
                         asChild
                         variant="outline"
-                        className="border-gray-700 hover:bg-gray-400 hover:text-black text-white"
+                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
                       >
                         <a
                           href={selectedProject.github_url}
