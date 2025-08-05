@@ -117,7 +117,7 @@ export function EducationSection({ education }: EducationSectionProps) {
                           </div>
                           <div className="flex flex-col items-center gap-2">
                             <Badge
-                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto`}
+                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto hover:bg-inherit hover:text-inherit`}
                             >
                               {new Date(edu.start_date).getFullYear()} -{" "}
                               {edu.end_date
