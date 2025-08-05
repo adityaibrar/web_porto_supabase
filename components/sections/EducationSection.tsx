@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { type Education } from "@/app/page";
 
@@ -39,7 +39,7 @@ const colorSchemes = [
 
 export function EducationSection({ education }: EducationSectionProps) {
   return (
-    <section id="education" className="py-20 px-6">
+    <section id="education" className="py-20 px-6 bg-gray-900/30">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <motion.h2
@@ -65,53 +65,84 @@ export function EducationSection({ education }: EducationSectionProps) {
                   transition={{ duration: 0.8 }}
                 >
                   <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300">
-                    <CardContent className="p-8">
-                      <div className="flex items-start space-x-4">
+                    <CardHeader>
+                      <div className="flex items-center space-x-4">
                         <div className={`p-3 ${colorScheme.bg} rounded-lg`}>
                           <GraduationCap
                             className={`w-8 h-8 ${colorScheme.text}`}
                           />
                         </div>
-                        <div className="flex-1">
-                          <div className="flex justify-between items-start mb-4">
-                            <div>
-                              <h3 className="text-xl font-bold text-white mb-2">
-                                {edu.degree}
-                              </h3>
-                              <p className={`font-medium ${colorScheme.text}`}>
-                                {edu.institution}
-                              </p>
-                              <p className="text-gray-300">
+
+                        {/* <div className="flex-1 flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-2">
+                              {edu.degree}
+                            </h3>
+                            <p className={`font-medium ${colorScheme.text}`}>
+                              {edu.institution}
+                            </p>
+                            {edu.field_of_study && (
+                              <p className="text-gray-300 text-sm mt-1 self-start">
                                 {edu.field_of_study}
                               </p>
-                            </div>
-                            <div className="text-right">
-                              <Badge
-                                className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} mb-2`}
-                              >
-                                {new Date(edu.start_date).getFullYear()} -{" "}
-                                {edu.end_date
-                                  ? new Date(edu.end_date).getFullYear()
-                                  : "Present"}
-                              </Badge>
-                              {edu.gpa && (
-                                <div>
-                                  <Badge
-                                    variant="secondary"
-                                    className="bg-gray-800 text-gray-300"
-                                  >
-                                    GPA: {edu.gpa}
-                                  </Badge>
-                                </div>
-                              )}
-                            </div>
+                            )}
                           </div>
-                          {edu.description && (
-                            <p className="text-gray-300">{edu.description}</p>
-                          )}
+                          <div className="flex flex-col items-end gap-2">
+                            <Badge
+                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap`}
+                            >
+                              {new Date(edu.start_date).getFullYear()} -{" "}
+                              {edu.end_date
+                                ? new Date(edu.end_date).getFullYear()
+                                : "Present"}
+                            </Badge>
+                            {edu.gpa && (
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-800 text-gray-300 text-xs md:text-sm"
+                              >
+                                GPA: {edu.gpa}
+                              </Badge>
+                            )}
+                          </div>
+                        </div> */}
+                        <div className="flex-1 flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-2">
+                              {edu.degree}
+                            </h3>
+                            <p className={`font-medium ${colorScheme.text}`}>
+                              {edu.institution}
+                            </p>
+                          </div>
+                          <div className="flex flex-col items-center gap-2">
+                            <Badge
+                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto`}
+                            >
+                              {new Date(edu.start_date).getFullYear()} -{" "}
+                              {edu.end_date
+                                ? new Date(edu.end_date).getFullYear()
+                                : "Present"}
+                            </Badge>
+                            {edu.gpa && (
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-800 text-gray-300 text-xs md:text-sm whitespace-nowrap self-start md:self-auto"
+                              >
+                                GPA: {edu.gpa}
+                              </Badge>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </CardContent>
+                    </CardHeader>
+                    {edu.description && (
+                      <CardContent>
+                        <p className="text-gray-300 text-sm md:text-base">
+                          {edu.description}
+                        </p>
+                      </CardContent>
+                    )}
                   </Card>
                 </motion.div>
               );

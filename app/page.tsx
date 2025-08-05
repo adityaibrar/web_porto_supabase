@@ -145,25 +145,25 @@ export default function Home() {
         onScrollToSection={scrollToSection}
       />
 
-      {/* <HeroSection profile={profile} onScrollToSection={scrollToSection} /> */}
+      <HeroSection profile={profile} onScrollToSection={scrollToSection} />
 
-      {/* <DemoDataNotice profile={profile} /> */}
+      <DemoDataNotice profile={profile} />
 
-      {/* <AboutSection profile={profile} stats={stats} /> */}
+      <AboutSection profile={profile} stats={stats} />
 
       <ExperienceSection experience={experience} />
 
-      {/* <ProjectsSection projects={projects} /> */}
+      <ProjectsSection projects={projects} />
 
-      {/* <SkillsSection skills={skills} /> */}
+      <SkillsSection skills={skills} />
 
       <EducationSection education={education} />
 
-      {/* <CertificatesSection certificates={certificates} /> */}
+      <CertificatesSection certificates={certificates} />
 
-      {/* <ContactSection profile={profile} /> */}
+      <ContactSection profile={profile} />
 
-      {/* <FooterSection profile={profile} /> */}
+      <FooterSection profile={profile} />
     </div>
   );
 }
