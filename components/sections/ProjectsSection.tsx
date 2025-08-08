@@ -109,6 +109,18 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                         className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                      <div className="absolute top-4 left-4">
+                        {!project.featured && (
+                          <Badge className="bg-green-600/50 text-white border border-green-700 text-xs backdrop-blur-sm">
+                            Featured
+                          </Badge>
+                        )}
+                        {project.featured && (
+                          <Badge className="bg-red-500/50 text-white border border-red-600 text-xs mt-2 backdrop-blur-sm">
+                            In Development
+                          </Badge>
+                        )}
+                      </div>
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <Button
                           onClick={() => openModal(project)}
