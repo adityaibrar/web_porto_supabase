@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Code } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Skill } from "@/lib/types";
 import Image from "next/image";
+import { Skill } from "@/types/types";
 
 interface SkillsSectionProps {
   skills: Skill[];

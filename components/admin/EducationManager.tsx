@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Trash2, Edit, GraduationCap } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { Education } from "@/lib/types";
+import { Education } from "@/types/types";
 
 const educationSchema = z.object({
   institution: z.string().min(1, "Institution name is required"),
@@ -35,15 +35,32 @@ interface EducationManagerProps {
 const colorSchemes = [
   { bg: "bg-cyan-500/20", text: "text-cyan-400", border: "border-cyan-500/30" },
   { bg: "bg-blue-500/20", text: "text-blue-400", border: "border-blue-500/30" },
-  { bg: "bg-purple-500/20", text: "text-purple-400", border: "border-purple-500/30" },
-  { bg: "bg-green-500/20", text: "text-green-400", border: "border-green-500/30" },
+  {
+    bg: "bg-purple-500/20",
+    text: "text-purple-400",
+    border: "border-purple-500/30",
+  },
+  {
+    bg: "bg-green-500/20",
+    text: "text-green-400",
+    border: "border-green-500/30",
+  },
   { bg: "bg-pink-500/20", text: "text-pink-400", border: "border-pink-500/30" },
-  { bg: "bg-orange-500/20", text: "text-orange-400", border: "border-orange-500/30" },
+  {
+    bg: "bg-orange-500/20",
+    text: "text-orange-400",
+    border: "border-orange-500/30",
+  },
 ];
 
-export function EducationManager({ education, onEducationUpdate }: EducationManagerProps) {
+export function EducationManager({
+  education,
+  onEducationUpdate,
+}: EducationManagerProps) {
   const [loading, setLoading] = useState(false);
-  const [editingEducation, setEditingEducation] = useState<Education | null>(null);
+  const [editingEducation, setEditingEducation] = useState<Education | null>(
+    null
+  );
 
   const {
     register,
@@ -71,7 +88,10 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
           .eq("id", editingEducation.id)
           .select();
       } else {
-        result = await supabase.from("education").insert([educationData]).select();
+        result = await supabase
+          .from("education")
+          .insert([educationData])
+          .select();
       }
 
       if (result.error) throw result.error;
@@ -89,7 +109,9 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
       reset();
       setEditingEducation(null);
       toast.success(
-        editingEducation ? "Education updated successfully!" : "Education added successfully!"
+        editingEducation
+          ? "Education updated successfully!"
+          : "Education added successfully!"
       );
     } catch (error) {
       console.error("Error saving education:", error);
@@ -116,7 +138,10 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
     if (!confirm("Are you sure you want to delete this education?")) return;
 
     try {
-      const { error } = await supabase.from("education").delete().eq("id", eduId);
+      const { error } = await supabase
+        .from("education")
+        .delete()
+        .eq("id", eduId);
 
       if (error) throw error;
 
@@ -153,7 +178,9 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
                   className={errors.institution ? "border-red-500" : ""}
                 />
                 {errors.institution && (
-                  <p className="text-red-500 text-sm mt-1">{errors.institution.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.institution.message}
+                  </p>
                 )}
               </div>
 
@@ -165,7 +192,9 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
                   className={errors.degree ? "border-red-500" : ""}
                 />
                 {errors.degree && (
-                  <p className="text-red-500 text-sm mt-1">{errors.degree.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.degree.message}
+                  </p>
                 )}
               </div>
 
@@ -177,7 +206,9 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
                   className={errors.field_of_study ? "border-red-500" : ""}
                 />
                 {errors.field_of_study && (
-                  <p className="text-red-500 text-sm mt-1">{errors.field_of_study.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.field_of_study.message}
+                  </p>
                 )}
               </div>
 
@@ -193,7 +224,9 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
                   className={errors.gpa ? "border-red-500" : ""}
                 />
                 {errors.gpa && (
-                  <p className="text-red-500 text-sm mt-1">{errors.gpa.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.gpa.message}
+                  </p>
                 )}
               </div>
 
@@ -206,17 +239,17 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
                   className={errors.start_date ? "border-red-500" : ""}
                 />
                 {errors.start_date && (
-                  <p className="text-red-500 text-sm mt-1">{errors.start_date.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.start_date.message}
+                  </p>
                 )}
               </div>
 
               <div>
-                <Label htmlFor="end_date">End Date (Leave empty if current)</Label>
-                <Input
-                  id="end_date"
-                  type="date"
-                  {...register("end_date")}
-                />
+                <Label htmlFor="end_date">
+                  End Date (Leave empty if current)
+                </Label>
+                <Input id="end_date" type="date" {...register("end_date")} />
               </div>
             </div>
 
@@ -231,7 +264,8 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
 
             <div className="flex space-x-2">
               <Button type="submit" disabled={loading}>
-                {loading ? "Saving..." : editingEducation ? "Update" : "Add"} Education
+                {loading ? "Saving..." : editingEducation ? "Update" : "Add"}{" "}
+                Education
               </Button>
               {editingEducation && (
                 <Button type="button" variant="outline" onClick={handleCancel}>
@@ -258,23 +292,36 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
                 >
                   <div className="flex items-start space-x-4 flex-1">
                     <div className={`p-3 ${colorScheme.bg} rounded-lg`}>
-                      <GraduationCap className={`w-6 h-6 ${colorScheme.text}`} />
+                      <GraduationCap
+                        className={`w-6 h-6 ${colorScheme.text}`}
+                      />
                     </div>
                     <div className="flex-1">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <h3 className="font-bold text-lg">{edu.degree}</h3>
-                          <p className={`font-medium ${colorScheme.text}`}>{edu.institution}</p>
-                          <p className="text-muted-foreground">{edu.field_of_study}</p>
+                          <p className={`font-medium ${colorScheme.text}`}>
+                            {edu.institution}
+                          </p>
+                          <p className="text-muted-foreground">
+                            {edu.field_of_study}
+                          </p>
                         </div>
                         <div className="text-right">
-                          <Badge className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} mb-2`}>
+                          <Badge
+                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} mb-2`}
+                          >
                             {new Date(edu.start_date).getFullYear()} -{" "}
-                            {edu.end_date ? new Date(edu.end_date).getFullYear() : "Present"}
+                            {edu.end_date
+                              ? new Date(edu.end_date).getFullYear()
+                              : "Present"}
                           </Badge>
                           {edu.gpa && (
                             <div>
-                              <Badge variant="secondary" className="bg-gray-800 text-gray-300">
+                              <Badge
+                                variant="secondary"
+                                className="bg-gray-800 text-gray-300"
+                              >
                                 GPA: {edu.gpa}
                               </Badge>
                             </div>
@@ -282,7 +329,9 @@ export function EducationManager({ education, onEducationUpdate }: EducationMana
                         </div>
                       </div>
                       {edu.description && (
-                        <p className="text-muted-foreground">{edu.description}</p>
+                        <p className="text-muted-foreground">
+                          {edu.description}
+                        </p>
                       )}
                     </div>
                   </div>

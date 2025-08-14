@@ -16,7 +16,7 @@ import {
   Profile,
   Project,
   Skill,
-} from "@/lib/types";
+} from "@/types/types";
 
 interface StatsOverviewProps {
   profile: Profile | null;

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Briefcase, Globe, Trophy, Code, MapPin, Phone } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Profile } from "@/lib/types";
+import { Profile } from "@/types/types";
 
 interface PortfolioStats {
   total_projects: number;

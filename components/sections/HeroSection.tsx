@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Profile } from "@/lib/types";
 import Image from "next/image";
+import { Profile } from "@/types/types";
 // import { type Profile } from "@/app/page";
 
 interface HeroSectionProps {
   profile: Profile | null;
-  // onScrollToSection: (sectionId: string) => void;
 }
 
 export function HeroSection({ profile }: HeroSectionProps) {

@@ -14,7 +14,7 @@ import { Trash2, Edit, Plus } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
-import { Skill } from "@/lib/types";
+import { Skill } from "@/types/types";
 
 const skillSchema = z.object({
   name: z.string().min(1, "Skill name is required"),

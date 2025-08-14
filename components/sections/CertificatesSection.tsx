@@ -5,7 +5,7 @@ import { Award, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Certificate } from "@/lib/types";
+import { Certificate } from "@/types/types";
 
 interface CertificatesSectionProps {
   certificates: Certificate[];

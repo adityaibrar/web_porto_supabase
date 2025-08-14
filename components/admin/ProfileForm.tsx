@@ -14,7 +14,7 @@ import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import { AuthManager } from "@/components/admin/AuthManager";
 import Image from "next/image";
-import { Profile } from "@/lib/types";
+import { Profile } from "@/types/types";
 
 const profileSchema = z.object({
   name: z.string().min(1, "Name is required"),
