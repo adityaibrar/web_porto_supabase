@@ -16,7 +16,7 @@ import { Trash2, Edit, FolderOpen, ExternalLink, Github } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
-import { Project } from "@/lib/types";
+import { Project } from "@/types/types";
 
 const projectSchema = z.object({
   title: z.string().min(1, "Project title is required"),

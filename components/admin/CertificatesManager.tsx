@@ -14,7 +14,7 @@ import { Trash2, Edit, Award, ExternalLink } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
-import { Certificate } from "@/lib/types";
+import { Certificate } from "@/types/types";
 
 const certificateSchema = z.object({
   title: z.string().min(1, "Certificate title is required"),

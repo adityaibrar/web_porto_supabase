@@ -14,7 +14,7 @@ import {
   Profile,
   Project,
   Skill,
-} from "@/lib/types";
+} from "@/types/types";
 interface AdminTabsProps {
   profile: Profile | null;
   skills: Skill[];

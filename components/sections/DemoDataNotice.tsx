@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Profile } from "@/lib/types";
+import { Profile } from "@/types/types";
 
 interface DemoDataNoticeProps {
   profile: Profile | null;

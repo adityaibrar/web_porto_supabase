@@ -13,8 +13,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Project } from "@/lib/types";
 import Image from "next/image";
+import { Project } from "@/types/types";
 
 interface ProjectsSectionProps {
   projects: Project[];

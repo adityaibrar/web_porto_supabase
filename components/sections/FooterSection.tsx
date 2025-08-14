@@ -1,6 +1,6 @@
 "use client";
 
-import { Profile } from "@/lib/types";
+import { Profile } from "@/types/types";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 interface FooterSectionProps {

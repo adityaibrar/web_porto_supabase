@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { Profile } from "@/lib/types";
+import { Profile } from "@/types/types";
 // import { type Profile } from "@/app/page";
 
 interface NavigationBarProps {

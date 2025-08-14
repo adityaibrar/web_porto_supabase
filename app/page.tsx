@@ -1,8 +1,5 @@
 // "use client";
 
-import { useEffect, useState } from "react";
-import { supabase, type Database } from "@/lib/supabase";
-
 // Import all section components
 import { HeroSection } from "@/components/sections/HeroSection";
 import { DemoDataNotice } from "@/components/sections/DemoDataNotice";

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Experience } from "@/lib/types";
+import { Experience } from "@/types/types";
 
 interface ExperienceSectionProps {
   experience: Experience[];
