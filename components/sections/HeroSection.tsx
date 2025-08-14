@@ -3,14 +3,19 @@
 import { motion } from "framer-motion";
 import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { type Profile } from "@/app/page";
+import { Profile } from "@/lib/types";
+import Image from "next/image";
+// import { type Profile } from "@/app/page";
 
 interface HeroSectionProps {
   profile: Profile | null;
-  onScrollToSection: (sectionId: string) => void;
+  // onScrollToSection: (sectionId: string) => void;
 }
 
-export function HeroSection({ profile, onScrollToSection }: HeroSectionProps) {
+export function HeroSection({ profile }: HeroSectionProps) {
+  const scrollToAbout = () => {
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <section
       id="hero"
@@ -23,7 +28,9 @@ export function HeroSection({ profile, onScrollToSection }: HeroSectionProps) {
         <div className="mb-8">
           <div className="w-32 h-32 mx-auto mb-8 relative">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse"></div>
-            <img
+            <Image
+              width={128}
+              height={128}
               src={profile?.avatar_url || ""}
               alt={profile?.name || "Profile"}
               className="w-full h-full rounded-full object-cover relative z-10 border-4 border-background"
@@ -89,7 +96,7 @@ export function HeroSection({ profile, onScrollToSection }: HeroSectionProps) {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button
-            onClick={() => onScrollToSection("about")}
+            onClick={() => scrollToAbout()}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
           >
             Explore My Work

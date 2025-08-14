@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { type Education } from "@/app/page";
+import { Education } from "@/lib/types";
 
 interface EducationSectionProps {
   education: Education[];

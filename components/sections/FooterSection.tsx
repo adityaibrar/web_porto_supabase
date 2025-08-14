@@ -1,7 +1,7 @@
 "use client";
 
+import { Profile } from "@/lib/types";
 import { Github, Linkedin, Mail } from "lucide-react";
-import { type Profile } from "@/app/page";
 
 interface FooterSectionProps {
   profile: Profile | null;

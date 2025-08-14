@@ -10,11 +10,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { supabase, type Database } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import { AuthManager } from "@/components/admin/AuthManager";
-
-type Profile = Database["public"]["Tables"]["profile"]["Row"];
+import Image from "next/image";
+import { Profile } from "@/lib/types";
 
 const profileSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -253,7 +253,9 @@ export function ProfileForm({ profile, onProfileUpdate }: ProfileFormProps) {
               />
               {profile?.avatar_url && (
                 <div className="mt-2">
-                  <img
+                  <Image
+                    width={20}
+                    height={20}
                     src={profile.avatar_url}
                     alt="Current avatar"
                     className="w-20 h-20 rounded-full object-cover"

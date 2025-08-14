@@ -1,23 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { type Profile } from "@/app/page";
+import { Profile } from "@/lib/types";
+// import { type Profile } from "@/app/page";
 
 interface NavigationBarProps {
   profile: Profile | null;
-  activeSection: string;
-  onScrollToSection: (sectionId: string) => void;
+  // activeSection: string;
+  // onScrollToSection: (sectionId: string) => void;
 }
 
 export function NavigationBar({
   profile,
-  activeSection,
-  onScrollToSection,
-}: NavigationBarProps) {
+}: // activeSection,
+// onScrollToSection,
+NavigationBarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        "hero",
+        "about",
+        "experience",
+        "projects",
+        "skills",
+        "education",
+        "certificates",
+        "contact",
+      ];
+      const current = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) {
+        setActiveSection(current);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "About", id: "about" },
@@ -35,7 +66,10 @@ export function NavigationBar({
 
     // Add small delay to ensure menu closes before scrolling
     setTimeout(() => {
-      onScrollToSection(sectionId);
+      document
+        .getElementById(sectionId)
+        ?.scrollIntoView({ behavior: "smooth" });
+      // onScrollToSection(sectionId);
     }, 100);
   };
 
@@ -61,7 +95,8 @@ export function NavigationBar({
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => onScrollToSection(item.id)}
+                // onClick={() => onScrollToSection(item.id)}
+                onClick={() => {}}
                 className={`text-sm font-medium transition-colors hover:text-cyan-400 relative ${
                   activeSection === item.id ? "text-cyan-400" : "text-gray-300"
                 }`}

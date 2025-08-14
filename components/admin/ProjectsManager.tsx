@@ -13,10 +13,10 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { Trash2, Edit, FolderOpen, ExternalLink, Github } from "lucide-react";
-import { supabase, type Database } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
-
-type Project = Database["public"]["Tables"]["projects"]["Row"];
+import Image from "next/image";
+import { Project } from "@/lib/types";
 
 const projectSchema = z.object({
   title: z.string().min(1, "Project title is required"),
@@ -272,7 +272,9 @@ export function ProjectsManager({
               />
               {editingProject?.image_url && (
                 <div className="mt-2">
-                  <img
+                  <Image
+                    width={32}
+                    height={20}
                     src={editingProject.image_url}
                     alt="Current project image"
                     className="w-32 h-20 object-cover rounded"
@@ -319,7 +321,9 @@ export function ProjectsManager({
                   className="border rounded-lg overflow-hidden"
                 >
                   <div className="relative">
-                    <img
+                    <Image
+                      width={20}
+                      height={32}
                       src={
                         project.image_url ||
                         "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=500"
