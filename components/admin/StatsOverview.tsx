@@ -9,14 +9,14 @@ import {
   GraduationCap,
   Code,
 } from "lucide-react";
-import { type Database } from "@/lib/supabase";
-
-type Profile = Database["public"]["Tables"]["profile"]["Row"];
-type Skill = Database["public"]["Tables"]["skills"]["Row"];
-type Education = Database["public"]["Tables"]["education"]["Row"];
-type Experience = Database["public"]["Tables"]["experience"]["Row"];
-type Project = Database["public"]["Tables"]["projects"]["Row"];
-type Certificate = Database["public"]["Tables"]["certificates"]["Row"];
+import {
+  Certificate,
+  Education,
+  Experience,
+  Profile,
+  Project,
+  Skill,
+} from "@/lib/types";
 
 interface StatsOverviewProps {
   profile: Profile | null;

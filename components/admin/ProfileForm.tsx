@@ -10,12 +10,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { supabase, type Database } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import { AuthManager } from "@/components/admin/AuthManager";
 import Image from "next/image";
-
-type Profile = Database["public"]["Tables"]["profile"]["Row"];
+import { Profile } from "@/lib/types";
 
 const profileSchema = z.object({
   name: z.string().min(1, "Name is required"),

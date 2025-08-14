@@ -12,9 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Trash2, Edit, Plus, Briefcase } from "lucide-react";
-import { supabase, type Database } from "@/lib/supabase";
-
-type Experience = Database["public"]["Tables"]["experience"]["Row"];
+import { supabase } from "@/lib/supabase";
+import { Experience } from "@/lib/types";
 
 const experienceSchema = z.object({
   company: z.string().min(1, "Company name is required"),

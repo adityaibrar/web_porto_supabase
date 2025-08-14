@@ -13,11 +13,10 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { Trash2, Edit, FolderOpen, ExternalLink, Github } from "lucide-react";
-import { supabase, type Database } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
-
-type Project = Database["public"]["Tables"]["projects"]["Row"];
+import { Project } from "@/lib/types";
 
 const projectSchema = z.object({
   title: z.string().min(1, "Project title is required"),

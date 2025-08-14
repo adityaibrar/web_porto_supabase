@@ -12,9 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Trash2, Edit, GraduationCap } from "lucide-react";
-import { supabase, type Database } from "@/lib/supabase";
-
-type Education = Database["public"]["Tables"]["education"]["Row"];
+import { supabase } from "@/lib/supabase";
+import { Education } from "@/lib/types";
 
 const educationSchema = z.object({
   institution: z.string().min(1, "Institution name is required"),

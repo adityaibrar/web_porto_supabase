@@ -11,11 +11,10 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Trash2, Edit, Plus } from "lucide-react";
-import { supabase, type Database } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
-
-type Skill = Database["public"]["Tables"]["skills"]["Row"];
+import { Skill } from "@/lib/types";
 
 const skillSchema = z.object({
   name: z.string().min(1, "Skill name is required"),
