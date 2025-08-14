@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { Code } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { type Skill } from "@/app/page";
+import { Skill } from "@/lib/types";
+import Image from "next/image";
 
 interface SkillsSectionProps {
   skills: Skill[];
@@ -61,7 +62,9 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                   >
                     <div className="w-6 h-6 rounded-md bg-gray-800 flex items-center justify-center overflow-hidden flex-shrink-0">
                       {skill.icon_url ? (
-                        <img
+                        <Image
+                          width={5}
+                          height={5}
                           src={skill.icon_url}
                           alt={skill.name}
                           className="w-5 h-5 object-contain"
@@ -105,7 +108,9 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                     >
                       <div className="w-6 h-6 rounded-md bg-gray-800 flex items-center justify-center overflow-hidden flex-shrink-0">
                         {skill.icon_url ? (
-                          <img
+                          <Image
+                            width={5}
+                            height={5}
                             src={skill.icon_url}
                             alt={skill.name}
                             className="w-5 h-5 object-contain"

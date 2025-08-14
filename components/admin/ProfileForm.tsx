@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { supabase, type Database } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import { AuthManager } from "@/components/admin/AuthManager";
+import Image from "next/image";
 
 type Profile = Database["public"]["Tables"]["profile"]["Row"];
 
@@ -253,7 +254,9 @@ export function ProfileForm({ profile, onProfileUpdate }: ProfileFormProps) {
               />
               {profile?.avatar_url && (
                 <div className="mt-2">
-                  <img
+                  <Image
+                    width={20}
+                    height={20}
                     src={profile.avatar_url}
                     alt="Current avatar"
                     className="w-20 h-20 rounded-full object-cover"

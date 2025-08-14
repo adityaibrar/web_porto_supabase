@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { Trash2, Edit, Plus } from "lucide-react";
 import { supabase, type Database } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
+import Image from "next/image";
 
 type Skill = Database["public"]["Tables"]["skills"]["Row"];
 
@@ -183,7 +184,9 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
               />
               {editingSkill?.icon_url && (
                 <div className="mt-2">
-                  <img
+                  <Image
+                    width={8}
+                    height={8}
                     src={editingSkill.icon_url}
                     alt="Current icon"
                     className="w-8 h-8 object-contain"
@@ -219,7 +222,9 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
               >
                 <div className="flex items-center space-x-3">
                   {skill.icon_url ? (
-                    <img
+                    <Image
+                      width={8}
+                      height={8}
                       src={skill.icon_url}
                       alt={skill.name}
                       className="w-8 h-8 object-contain"

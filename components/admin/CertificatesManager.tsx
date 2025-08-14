@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { Trash2, Edit, Award, ExternalLink } from "lucide-react";
 import { supabase, type Database } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
+import Image from "next/image";
 
 type Certificate = Database["public"]["Tables"]["certificates"]["Row"];
 
@@ -35,15 +36,31 @@ interface CertificatesManagerProps {
 const colorSchemes = [
   { bg: "bg-cyan-500/20", text: "text-cyan-400", border: "border-cyan-500/30" },
   { bg: "bg-blue-500/20", text: "text-blue-400", border: "border-blue-500/30" },
-  { bg: "bg-purple-500/20", text: "text-purple-400", border: "border-purple-500/30" },
-  { bg: "bg-green-500/20", text: "text-green-400", border: "border-green-500/30" },
+  {
+    bg: "bg-purple-500/20",
+    text: "text-purple-400",
+    border: "border-purple-500/30",
+  },
+  {
+    bg: "bg-green-500/20",
+    text: "text-green-400",
+    border: "border-green-500/30",
+  },
   { bg: "bg-pink-500/20", text: "text-pink-400", border: "border-pink-500/30" },
-  { bg: "bg-orange-500/20", text: "text-orange-400", border: "border-orange-500/30" },
+  {
+    bg: "bg-orange-500/20",
+    text: "text-orange-400",
+    border: "border-orange-500/30",
+  },
 ];
 
-export function CertificatesManager({ certificates, onCertificatesUpdate }: CertificatesManagerProps) {
+export function CertificatesManager({
+  certificates,
+  onCertificatesUpdate,
+}: CertificatesManagerProps) {
   const [loading, setLoading] = useState(false);
-  const [editingCertificate, setEditingCertificate] = useState<Certificate | null>(null);
+  const [editingCertificate, setEditingCertificate] =
+    useState<Certificate | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const {
@@ -84,7 +101,10 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
           .eq("id", editingCertificate.id)
           .select();
       } else {
-        result = await supabase.from("certificates").insert([certificateData]).select();
+        result = await supabase
+          .from("certificates")
+          .insert([certificateData])
+          .select();
       }
 
       if (result.error) throw result.error;
@@ -103,7 +123,9 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
       setEditingCertificate(null);
       setImageFile(null);
       toast.success(
-        editingCertificate ? "Certificate updated successfully!" : "Certificate added successfully!"
+        editingCertificate
+          ? "Certificate updated successfully!"
+          : "Certificate added successfully!"
       );
     } catch (error) {
       console.error("Error saving certificate:", error);
@@ -129,11 +151,16 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
     if (!confirm("Are you sure you want to delete this certificate?")) return;
 
     try {
-      const { error } = await supabase.from("certificates").delete().eq("id", certId);
+      const { error } = await supabase
+        .from("certificates")
+        .delete()
+        .eq("id", certId);
 
       if (error) throw error;
 
-      const updatedCertificates = certificates.filter((cert) => cert.id !== certId);
+      const updatedCertificates = certificates.filter(
+        (cert) => cert.id !== certId
+      );
       onCertificatesUpdate(updatedCertificates);
       toast.success("Certificate deleted successfully!");
     } catch (error) {
@@ -167,7 +194,9 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
                   className={errors.title ? "border-red-500" : ""}
                 />
                 {errors.title && (
-                  <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.title.message}
+                  </p>
                 )}
               </div>
 
@@ -179,7 +208,9 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
                   className={errors.issuer ? "border-red-500" : ""}
                 />
                 {errors.issuer && (
-                  <p className="text-red-500 text-sm mt-1">{errors.issuer.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.issuer.message}
+                  </p>
                 )}
               </div>
 
@@ -192,7 +223,9 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
                   className={errors.issue_date ? "border-red-500" : ""}
                 />
                 {errors.issue_date && (
-                  <p className="text-red-500 text-sm mt-1">{errors.issue_date.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.issue_date.message}
+                  </p>
                 )}
               </div>
 
@@ -207,10 +240,7 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
 
               <div>
                 <Label htmlFor="credential_id">Credential ID</Label>
-                <Input
-                  id="credential_id"
-                  {...register("credential_id")}
-                />
+                <Input id="credential_id" {...register("credential_id")} />
               </div>
 
               <div>
@@ -221,7 +251,9 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
                   className={errors.credential_url ? "border-red-500" : ""}
                 />
                 {errors.credential_url && (
-                  <p className="text-red-500 text-sm mt-1">{errors.credential_url.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.credential_url.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -236,7 +268,9 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
               />
               {editingCertificate?.image_url && (
                 <div className="mt-2">
-                  <img
+                  <Image
+                    width={32}
+                    height={20}
                     src={editingCertificate.image_url}
                     alt="Current certificate image"
                     className="w-32 h-20 object-cover rounded"
@@ -247,7 +281,8 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
 
             <div className="flex space-x-2">
               <Button type="submit" disabled={loading}>
-                {loading ? "Saving..." : editingCertificate ? "Update" : "Add"} Certificate
+                {loading ? "Saving..." : editingCertificate ? "Update" : "Add"}{" "}
+                Certificate
               </Button>
               {editingCertificate && (
                 <Button type="button" variant="outline" onClick={handleCancel}>
@@ -278,9 +313,13 @@ export function CertificatesManager({ certificates, onCertificatesUpdate }: Cert
                     </div>
                     <div className="flex-1">
                       <h3 className="font-bold text-lg mb-1">{cert.title}</h3>
-                      <p className="text-muted-foreground text-sm mb-2">{cert.issuer}</p>
+                      <p className="text-muted-foreground text-sm mb-2">
+                        {cert.issuer}
+                      </p>
                       <div className="flex items-center space-x-2">
-                        <Badge className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border}`}>
+                        <Badge
+                          className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border}`}
+                        >
                           {new Date(cert.issue_date).getFullYear()}
                         </Badge>
                         {cert.credential_url && (

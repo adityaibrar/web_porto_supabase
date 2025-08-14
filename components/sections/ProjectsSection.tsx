@@ -12,8 +12,9 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { type Project } from "@/app/page";
 import { useState } from "react";
+import { Project } from "@/lib/types";
+import Image from "next/image";
 
 interface ProjectsSectionProps {
   projects: Project[];
@@ -100,7 +101,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 >
                   <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300 group hover:scale-105 h-full cursor-pointer">
                     <div className="relative overflow-hidden rounded-t-lg">
-                      <img
+                      <Image
+                        width={500}
+                        height={48}
                         src={
                           project.image_url ||
                           "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=500"
@@ -278,7 +281,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 <div className="p-6">
                   {/* Project Image */}
                   <div className="mb-6">
-                    <img
+                    <Image
+                      width={500}
+                      height={64}
                       src={
                         selectedProject.image_url ||
                         "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"

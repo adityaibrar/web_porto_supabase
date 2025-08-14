@@ -6,8 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { type Profile } from "@/app/page";
 import { useState } from "react";
+import { Profile } from "@/lib/types";
 
 interface ContactSectionProps {
   profile: Profile | null;
