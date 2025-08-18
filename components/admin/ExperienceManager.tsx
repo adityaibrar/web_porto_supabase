@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { Trash2, Edit, Plus, Briefcase } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { Experience } from "@/types/types";
+import { revalidateHomePage } from "@/lib/actions/actions";
 
 const experienceSchema = z.object({
   company: z.string().min(1, "Company name is required"),
@@ -104,6 +105,8 @@ export function ExperienceManager({
         onExperienceUpdate(updatedExperience);
       }
 
+      await revalidateHomePage();
+
       reset();
       setEditingExperience(null);
       toast.success(
@@ -141,6 +144,8 @@ export function ExperienceManager({
         .eq("id", expId);
 
       if (error) throw error;
+
+      await revalidateHomePage();
 
       const updatedExperience = experience.filter((exp) => exp.id !== expId);
       onExperienceUpdate(updatedExperience);
@@ -201,7 +206,9 @@ export function ExperienceManager({
                   id="start_date"
                   type="date"
                   {...register("start_date")}
-                  className={errors.start_date ? "border-red-500" : ""}
+                  className={`${
+                    errors.start_date ? "border-red-500" : ""
+                  } date-input-white-icon`}
                 />
                 {errors.start_date && (
                   <p className="text-red-500 text-sm mt-1">
@@ -214,7 +221,12 @@ export function ExperienceManager({
                 <Label htmlFor="end_date">
                   End Date (Leave empty if current)
                 </Label>
-                <Input id="end_date" type="date" {...register("end_date")} />
+                <Input
+                  id="end_date"
+                  type="date"
+                  {...register("end_date")}
+                  className="date-input-white-icon"
+                />
               </div>
             </div>
 

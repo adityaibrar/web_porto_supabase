@@ -149,6 +149,11 @@
   animation: glow 2s ease-in-out infinite;
 }
 
+.date-input-white-icon::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 1;
+}
+
 @keyframes scrollLeft {
   from {
     transform: translateX(0%);

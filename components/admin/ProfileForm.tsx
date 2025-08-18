@@ -15,6 +15,7 @@ import { uploadFile } from "@/lib/storage";
 import { AuthManager } from "@/components/admin/AuthManager";
 import Image from "next/image";
 import { Profile } from "@/types/types";
+import { revalidateHomePage } from "@/lib/actions/actions";
 
 const profileSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -99,6 +100,8 @@ export function ProfileForm({ profile, onProfileUpdate }: ProfileFormProps) {
       }
 
       if (result.error) throw result.error;
+
+      await revalidateHomePage();
 
       onProfileUpdate(result.data);
       toast.success("Profile updated successfully!");
