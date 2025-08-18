@@ -15,6 +15,7 @@ import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
 import { Certificate } from "@/types/types";
+import { revalidateHomePage } from "@/lib/actions/actions";
 
 const certificateSchema = z.object({
   title: z.string().min(1, "Certificate title is required"),
@@ -117,6 +118,7 @@ export function CertificatesManager({
       if (updatedCertificates) {
         onCertificatesUpdate(updatedCertificates);
       }
+      await revalidateHomePage();
 
       reset();
       setEditingCertificate(null);
@@ -156,6 +158,7 @@ export function CertificatesManager({
         .eq("id", certId);
 
       if (error) throw error;
+      await revalidateHomePage();
 
       const updatedCertificates = certificates.filter(
         (cert) => cert.id !== certId
@@ -219,7 +222,9 @@ export function CertificatesManager({
                   id="issue_date"
                   type="date"
                   {...register("issue_date")}
-                  className={errors.issue_date ? "border-red-500" : ""}
+                  className={`${
+                    errors.issue_date ? "border-red-500" : ""
+                  } date-input-white-icon`}
                 />
                 {errors.issue_date && (
                   <p className="text-red-500 text-sm mt-1">
@@ -234,6 +239,7 @@ export function CertificatesManager({
                   id="expiry_date"
                   type="date"
                   {...register("expiry_date")}
+                  className="date-input-white-icon"
                 />
               </div>
 

@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { Trash2, Edit, GraduationCap } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { Education } from "@/types/types";
+import { revalidateHomePage } from "@/lib/actions/actions";
 
 const educationSchema = z.object({
   institution: z.string().min(1, "Institution name is required"),
@@ -105,6 +106,7 @@ export function EducationManager({
       if (updatedEducation) {
         onEducationUpdate(updatedEducation);
       }
+      await revalidateHomePage();
 
       reset();
       setEditingEducation(null);
@@ -144,6 +146,7 @@ export function EducationManager({
         .eq("id", eduId);
 
       if (error) throw error;
+      await revalidateHomePage();
 
       const updatedEducation = education.filter((edu) => edu.id !== eduId);
       onEducationUpdate(updatedEducation);
@@ -236,7 +239,9 @@ export function EducationManager({
                   id="start_date"
                   type="date"
                   {...register("start_date")}
-                  className={errors.start_date ? "border-red-500" : ""}
+                  className={`${
+                    errors.start_date ? "border-red-500" : ""
+                  } date-input-white-icon`}
                 />
                 {errors.start_date && (
                   <p className="text-red-500 text-sm mt-1">
@@ -249,7 +254,12 @@ export function EducationManager({
                 <Label htmlFor="end_date">
                   End Date (Leave empty if current)
                 </Label>
-                <Input id="end_date" type="date" {...register("end_date")} />
+                <Input
+                  id="end_date"
+                  type="date"
+                  {...register("end_date")}
+                  className="date-input-white-icon"
+                />
               </div>
             </div>
 

@@ -15,6 +15,7 @@ import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
 import { Skill } from "@/types/types";
+import { revalidateHomePage } from "@/lib/actions/actions";
 
 const skillSchema = z.object({
   name: z.string().min(1, "Skill name is required"),
@@ -85,6 +86,8 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
         onSkillsUpdate(updatedSkills);
       }
 
+      await revalidateHomePage();
+
       reset();
       setEditingSkill(null);
       setIconFile(null);
@@ -119,6 +122,7 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
         .eq("id", skillId);
 
       if (error) throw error;
+      await revalidateHomePage();
 
       const updatedSkills = skills.filter((skill) => skill.id !== skillId);
       onSkillsUpdate(updatedSkills);
