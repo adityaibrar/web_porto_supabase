@@ -5,19 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Profile } from "@/types/types";
-// import { type Profile } from "@/app/page";
 
 interface NavigationBarProps {
   profile: Profile | null;
-  // activeSection: string;
-  // onScrollToSection: (sectionId: string) => void;
 }
 
-export function NavigationBar({
-  profile,
-}: // activeSection,
-// onScrollToSection,
-NavigationBarProps) {
+export function NavigationBar({ profile }: NavigationBarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
 
@@ -95,7 +88,6 @@ NavigationBarProps) {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                // onClick={() => onScrollToSection(item.id)}
                 onClick={() => handleNavClick(item.id)}
                 className={`text-sm font-medium transition-colors hover:text-cyan-400 relative ${
                   activeSection === item.id ? "text-cyan-400" : "text-gray-300"
