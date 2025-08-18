@@ -17,6 +17,7 @@ import { supabase } from "@/lib/supabase";
 import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
 import { Project } from "@/types/types";
+import { revalidateHomePage } from "@/lib/actions/actions";
 
 const projectSchema = z.object({
   title: z.string().min(1, "Project title is required"),
@@ -120,6 +121,8 @@ export function ProjectsManager({
         onProjectsUpdate(updatedProjects);
       }
 
+      await revalidateHomePage();
+
       reset();
       setEditingProject(null);
       setImageFile(null);
@@ -159,6 +162,7 @@ export function ProjectsManager({
 
       if (error) throw error;
 
+      await revalidateHomePage();
       const updatedProjects = projects.filter(
         (project) => project.id !== projectId
       );
