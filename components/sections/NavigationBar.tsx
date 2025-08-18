@@ -96,7 +96,7 @@ NavigationBarProps) {
               <button
                 key={item.id}
                 // onClick={() => onScrollToSection(item.id)}
-                onClick={() => {}}
+                onClick={() => handleNavClick(item.id)}
                 className={`text-sm font-medium transition-colors hover:text-cyan-400 relative ${
                   activeSection === item.id ? "text-cyan-400" : "text-gray-300"
                 }`}
