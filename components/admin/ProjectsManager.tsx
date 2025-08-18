@@ -18,6 +18,11 @@ import { uploadFile } from "@/lib/storage";
 import Image from "next/image";
 import { Project } from "@/types/types";
 import { revalidateHomePage } from "@/lib/actions/actions";
+import {
+  addOrUpdateProject,
+  deleteProject,
+  getProjects,
+} from "@/lib/actions/projects";
 
 const projectSchema = z.object({
   title: z.string().min(1, "Project title is required"),
@@ -98,30 +103,22 @@ export function ProjectsManager({
         image_url: imageUrl,
       };
 
-      let result;
-      if (editingProject) {
-        result = await supabase
-          .from("projects")
-          .update(projectData)
-          .eq("id", editingProject.id)
-          .select();
-      } else {
-        result = await supabase.from("projects").insert([projectData]).select();
+      // Panggil Server Action
+      const result = await addOrUpdateProject(
+        projectData,
+        editingProject ? editingProject.id : null
+      );
+
+      if (!result.success) {
+        throw new Error(result.error);
       }
 
-      if (result.error) throw result.error;
-
       // Refresh projects list
-      const { data: updatedProjects } = await supabase
-        .from("projects")
-        .select("*")
-        .order("created_at", { ascending: false });
+      const { data: updatedProjects } = await getProjects();
 
       if (updatedProjects) {
         onProjectsUpdate(updatedProjects);
       }
-
-      await revalidateHomePage();
 
       reset();
       setEditingProject(null);
@@ -155,14 +152,13 @@ export function ProjectsManager({
     if (!confirm("Are you sure you want to delete this project?")) return;
 
     try {
-      const { error } = await supabase
-        .from("projects")
-        .delete()
-        .eq("id", projectId);
+      // Panggil Server Action
+      const result = await deleteProject(projectId);
 
-      if (error) throw error;
+      if (!result.success) {
+        throw new Error(result.error);
+      }
 
-      await revalidateHomePage();
       const updatedProjects = projects.filter(
         (project) => project.id !== projectId
       );
