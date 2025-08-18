@@ -105,7 +105,7 @@ export function ExperienceManager({
         onExperienceUpdate(updatedExperience);
       }
 
-      // await revalidateHomePage();
+      await revalidateHomePage();
 
       reset();
       setEditingExperience(null);
@@ -145,7 +145,7 @@ export function ExperienceManager({
 
       if (error) throw error;
 
-      // await revalidateHomePage();
+      await revalidateHomePage();
 
       const updatedExperience = experience.filter((exp) => exp.id !== expId);
       onExperienceUpdate(updatedExperience);

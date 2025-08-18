@@ -118,7 +118,7 @@ export function CertificatesManager({
       if (updatedCertificates) {
         onCertificatesUpdate(updatedCertificates);
       }
-      // await revalidateHomePage();
+      await revalidateHomePage();
 
       reset();
       setEditingCertificate(null);
@@ -158,7 +158,7 @@ export function CertificatesManager({
         .eq("id", certId);
 
       if (error) throw error;
-      // await revalidateHomePage();
+      await revalidateHomePage();
 
       const updatedCertificates = certificates.filter(
         (cert) => cert.id !== certId
