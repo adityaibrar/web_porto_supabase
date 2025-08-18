@@ -86,7 +86,7 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
         onSkillsUpdate(updatedSkills);
       }
 
-      await revalidateHomePage();
+      // await revalidateHomePage();
 
       reset();
       setEditingSkill(null);
@@ -122,7 +122,7 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
         .eq("id", skillId);
 
       if (error) throw error;
-      await revalidateHomePage();
+      // await revalidateHomePage();
 
       const updatedSkills = skills.filter((skill) => skill.id !== skillId);
       onSkillsUpdate(updatedSkills);

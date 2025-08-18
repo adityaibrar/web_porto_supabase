@@ -121,7 +121,7 @@ export function ProjectsManager({
         onProjectsUpdate(updatedProjects);
       }
 
-      await revalidateHomePage();
+      // await revalidateHomePage();
 
       reset();
       setEditingProject(null);
@@ -162,7 +162,7 @@ export function ProjectsManager({
 
       if (error) throw error;
 
-      await revalidateHomePage();
+      // await revalidateHomePage();
       const updatedProjects = projects.filter(
         (project) => project.id !== projectId
       );

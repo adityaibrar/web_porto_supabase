@@ -101,7 +101,7 @@ export function ProfileForm({ profile, onProfileUpdate }: ProfileFormProps) {
 
       if (result.error) throw result.error;
 
-      await revalidateHomePage();
+      // await revalidateHomePage();
 
       onProfileUpdate(result.data);
       toast.success("Profile updated successfully!");

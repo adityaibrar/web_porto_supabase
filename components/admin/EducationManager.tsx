@@ -106,7 +106,7 @@ export function EducationManager({
       if (updatedEducation) {
         onEducationUpdate(updatedEducation);
       }
-      await revalidateHomePage();
+      // await revalidateHomePage();
 
       reset();
       setEditingEducation(null);
@@ -146,7 +146,7 @@ export function EducationManager({
         .eq("id", eduId);
 
       if (error) throw error;
-      await revalidateHomePage();
+      // await revalidateHomePage();
 
       const updatedEducation = education.filter((edu) => edu.id !== eduId);
       onEducationUpdate(updatedEducation);
