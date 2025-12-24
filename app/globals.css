@@ -59,6 +59,7 @@
     min-height: 100vh;
     max-width: 100%;
     box-sizing: border-box;
+    /* scroll-behavior: smooth; */
   }
 }
 
@@ -147,6 +148,12 @@
 
 .animate-glow {
   animation: glow 2s ease-in-out infinite;
+}
+
+/* Vertical text */
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
 .date-input-white-icon::-webkit-calendar-picker-indicator {

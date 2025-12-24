@@ -19,12 +19,6 @@ import { getExperience } from "@/lib/actions/experience";
 import { getProjects } from "@/lib/actions/projects";
 import { getCertificates } from "@/lib/actions/certificates";
 
-interface PortfolioStats {
-  total_projects: number;
-  total_skills: number;
-  years_experience: number;
-}
-
 export default async function Home() {
   const profile = await getProfile();
   const skills = await getSkills();
