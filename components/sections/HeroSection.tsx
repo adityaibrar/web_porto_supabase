@@ -1,109 +1,164 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  FileText,
+  MousePointer2,
+  Terminal,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Profile } from "@/types/types";
-// import { type Profile } from "@/app/page";
+import { useEffect, useState } from "react";
 
 interface HeroSectionProps {
   profile: Profile | null;
 }
 
 export function HeroSection({ profile }: HeroSectionProps) {
-  const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+
+  // Data Titles persis egagofur.com
+  const titles = profile?.title?.split("|").map((t) => t.trim()) || [];
+
+  // Title Rotation Logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [titles.length]);
+
   return (
     <section
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-cyan-900/20"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,212,255,0.1),transparent_50%)]"></div>
-
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-        <div className="mb-8">
-          <div className="w-32 h-32 mx-auto mb-8 relative">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse"></div>
-            <Image
-              width={128}
-              height={128}
-              src={profile?.avatar_url || ""}
-              alt={profile?.name || "Profile"}
-              className="w-full h-full rounded-full object-cover relative z-10 border-4 border-background"
-              loading="eager"
-            />
-          </div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold mb-6 pb-2 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-          >
-            {profile?.name || "Flutter Developer"}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8"
-          >
-            {profile?.title || "Mobile App Developer | Cross-Platform Expert"}
-          </motion.p>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+          {/* --- LEFT CONTENT --- */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex justify-center space-x-6 mb-12"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left space-y-8 relative"
           >
-            {profile?.github_url && (
+            {/* 2. AVAILABLE FOR HIRE BADGE */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-800 bg-slate-900/50 backdrop-blur-sm"
+            >
+              <div className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+              </div>
+              <span className="text-xs font-medium text-slate-300 tracking-wide">
+                AVAILABLE FOR HIRE
+              </span>
+            </motion.div>
+
+            {/* 3. MAIN HEADING */}
+            <div className="space-y-2 relative">
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white leading-[1.1] flex items-center gap-3">
+                <span className="text-slate-300">I&apos;m </span>
+                {/* Blok Ungu Nama */}
+                <span className="relative inline-block px-4">
+                  <span className="absolute inset-0 bg-[#6d28d9] -skew-x-6 rounded-lg transform"></span>
+                  <span className="relative text-white z-10">
+                    {profile?.name?.split(" ")[1] || "Aditya"}
+                  </span>
+                </span>
+              </h1>
+
+              {/* Rotating Titles */}
+              <div className="h-12 flex items-center overflow-hidden pl-1">
+                <AnimatePresence mode="wait">
+                  <motion.h2
+                    key={currentTitleIndex}
+                    initial={{ y: 40, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -40, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-2xl md:text-3xl font-bold text-slate-400"
+                  >
+                    {titles[currentTitleIndex]}
+                  </motion.h2>
+                </AnimatePresence>
+              </div>
+
+              <p className="text-lg text-slate-400 max-w-lg leading-relaxed pt-4">
+                who loves intuitive, clean and work with{" "}
+                <span className="text-[#a78bfa] font-medium">
+                  Flutter ecosystem
+                </span>
+                .
+              </p>
+            </div>
+
+            {/* 4. CTA BUTTONS (FLOWING BORDER) */}
+            <div className="flex flex-col md:flex-row gap-6 pt-6">
               <a
-                href={profile.github_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-gray-800/50 rounded-full hover:bg-cyan-500/20 transition-all duration-300 hover:scale-110"
+                href="#contact"
+                className="relative inline-flex h-14 overflow-hidden rounded-[12px] p-[2px] focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2 focus:ring-offset-slate-50 group"
               >
-                <Github className="w-6 h-6" />
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#000000_0%,#6d28d9_50%,#000000_100%)]" />
+
+                {/* 2. Tombol Utama (Content Overlay) */}
+                <Button
+                  size="lg"
+                  className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[10px] bg-[#030014] px-10 text-sm font-semibold text-white backdrop-blur-3xl transition-all hover:bg-[#0f0b29]"
+                >
+                  Get in Touch
+                </Button>
               </a>
-            )}
-            {profile?.linkedin_url && (
-              <a
-                href={profile.linkedin_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-gray-800/50 rounded-full hover:bg-cyan-500/20 transition-all duration-300 hover:scale-110"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-            )}
-            {profile?.email && (
-              <a
-                href={`mailto:${profile.email}`}
-                className="p-3 bg-gray-800/50 rounded-full hover:bg-cyan-500/20 transition-all duration-300 hover:scale-110"
-              >
-                <Mail className="w-6 h-6" />
-              </a>
-            )}
+            </div>
           </motion.div>
-        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <Button
-            onClick={() => scrollToAbout()}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
+          {/* --- RIGHT CONTENT (IMAGE) --- */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative hidden lg:block"
           >
-            Explore My Work
-          </Button>
-        </motion.div>
+            {/* Glow Effect Belakang Gambar */}
+            {/* <div className="absolute -inset-4 bg-gradient-to-tr from-violet-600/30 to-purple-600/30 rounded-[2.5rem] blur-2xl"></div> */}
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-6 h-6 text-cyan-400" />
+            {/* Main Image Card */}
+            <div className="relative w-full max-w-sm ml-auto aspect-[4/5] rounded-[2rem] overflow-hidden border border-slate-800 bg-slate-900/50">
+              <Image
+                src={
+                  profile?.avatar_url ||
+                  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop"
+                }
+                alt="Profile"
+                fill
+                className="object-cover"
+              />
+
+              {/* Overlay Gradient bawah untuk teks (opsional) */}
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-[#030014] via-transparent to-transparent opacity-60"></div> */}
+            </div>
+
+            {/* Dekorasi Floating Icon di sebelah kanan gambar */}
+            <motion.div
+              animate={{ y: [0, -15, 0] }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
+              className="absolute -right-8 bottom-20 bg-[#1e1b4b] p-4 rounded-2xl border border-violet-500/30 shadow-2xl"
+            >
+              <Terminal className="w-8 h-8 text-violet-400" />
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

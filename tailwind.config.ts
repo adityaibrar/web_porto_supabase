@@ -87,6 +87,10 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateX(50px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        'spin-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -94,6 +98,7 @@ const config: Config = {
         'fade-in': 'fade-in 0.6s ease-out',
         'slide-in-left': 'slide-in-left 0.6s ease-out',
         'slide-in-right': 'slide-in-right 0.6s ease-out',
+        'spin-slow': 'spin-slow 3s linear infinite',
       },
     },
   },

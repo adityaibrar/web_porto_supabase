@@ -39,7 +39,7 @@ const colorSchemes = [
 
 export function EducationSection({ education }: EducationSectionProps) {
   return (
-    <section id="education" className="py-20 px-6 bg-gray-900/30">
+    <section id="education" className="py-20 px-6 relative">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <motion.h2

@@ -78,7 +78,7 @@ export function ContactSection({ profile }: ContactSectionProps) {
   };
 
   return (
-    <section id="contact" className="py-20 px-6">
+    <section id="contact" className="py-20 px-6 relative">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <motion.h2
