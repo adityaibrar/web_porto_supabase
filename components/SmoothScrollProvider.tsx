@@ -36,6 +36,20 @@ export default function SmoothScrollProvider({
 
     lenisRef.current = lenis;
 
+    // Stop Lenis when modal opens
+    const handleModalOpen = () => {
+      lenis.stop();
+    };
+
+    // Start Lenis when modal closes
+    const handleModalClose = () => {
+      lenis.start();
+    };
+
+    // Listen for modal state changes
+    window.addEventListener("modal-open", handleModalOpen);
+    window.addEventListener("modal-close", handleModalClose);
+
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -101,6 +115,8 @@ export default function SmoothScrollProvider({
     return () => {
       clearTimeout(timer);
       document.removeEventListener("click", handleAnchorClick);
+      window.removeEventListener("modal-open", handleModalOpen);
+      window.removeEventListener("modal-close", handleModalClose);
       lenis.destroy();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       gsap.ticker.remove((time) => lenis.raf(time * 1000));

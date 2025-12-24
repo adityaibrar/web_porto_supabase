@@ -65,14 +65,21 @@ export function CertificatesSection({
                   key={cert.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.03, y: -5 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                 >
-                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300">
+                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
-                        <div className={`p-3 ${colorScheme.bg} rounded-lg`}>
+                        <motion.div
+                          whileHover={{
+                            scale: 1.1,
+                          }}
+                          transition={{ duration: 0.5 }}
+                          className={`p-3 ${colorScheme.bg} rounded-lg group-hover:shadow-lg`}
+                        >
                           <Award className={`w-8 h-8 ${colorScheme.text}`} />
-                        </div>
+                        </motion.div>
                         <div className="flex-1">
                           <h3 className="text-lg font-bold text-white mb-1">
                             {cert.title}
@@ -80,28 +87,34 @@ export function CertificatesSection({
                           <p className="text-gray-300 text-sm mb-2">
                             {cert.issuer}
                           </p>
-                          <Badge
-                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border}`}
-                          >
-                            {new Date(cert.issue_date).getFullYear()}
-                          </Badge>
+                          <motion.div whileHover={{ scale: 1.05 }}>
+                            <Badge
+                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} cursor-pointer hover:bg-white-400 hover:border-white`}
+                            >
+                              {new Date(cert.issue_date).getFullYear()}
+                            </Badge>
+                          </motion.div>
                         </div>
                         {cert.credential_url && (
-                          <Button
-                            asChild
-                            size="sm"
-                            variant="outline"
-                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} hover:text-white hover:bg-white-400 hover:border-white`}
-                            // className="border-gray-700 text-gray-300 hover:border-cyan-400 hover:text-cyan-400 hover:bg-background"
+                          <motion.div
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            whileTap={{ scale: 0.9 }}
                           >
-                            <a
-                              href={cert.credential_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Button
+                              asChild
+                              size="sm"
+                              variant="outline"
+                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} hover:text-white hover:bg-white-400 hover:border-white`}
                             >
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
-                          </Button>
+                              <a
+                                href={cert.credential_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                              </a>
+                            </Button>
+                          </motion.div>
                         )}
                       </div>
                     </CardContent>
