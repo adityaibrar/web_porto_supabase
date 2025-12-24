@@ -12,6 +12,7 @@ import { CertificatesSection } from "@/components/sections/CertificatesSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { FooterSection } from "@/components/sections/FooterSection";
 import { NavigationBar } from "@/components/sections/NavigationBar";
+import { ParticleBackground } from "@/components/ParticleBackground";
 import { getProfile, getStats } from "@/lib/actions/profile";
 import { getSkills } from "@/lib/actions/skills";
 import { getEducation } from "@/lib/actions/education";
@@ -29,28 +30,34 @@ export default async function Home() {
   const stats = await getStats();
 
   return (
-    <div className="min-h-screen bg-background max-w-screen overflow-x-hidden">
-      <NavigationBar profile={profile} />
+    <div className="min-h-screen max-w-screen overflow-x-hidden relative">
+      {/* Global Particle Background */}
+      <ParticleBackground />
 
-      <HeroSection profile={profile} />
+      {/* Main Content */}
+      <div className="relative z-10">
+        <NavigationBar profile={profile} />
 
-      <DemoDataNotice profile={profile} />
+        <HeroSection profile={profile} />
 
-      <AboutSection profile={profile} stats={stats} />
+        <DemoDataNotice profile={profile} />
 
-      <ExperienceSection experience={experience} />
+        <AboutSection profile={profile} stats={stats} />
 
-      <ProjectsSection projects={projects} />
+        <ExperienceSection experience={experience} />
 
-      <SkillsSection skills={skills} />
+        <ProjectsSection projects={projects} />
 
-      <EducationSection education={education} />
+        <SkillsSection skills={skills} />
 
-      <CertificatesSection certificates={certificates} />
+        <EducationSection education={education} />
 
-      <ContactSection profile={profile} />
+        <CertificatesSection certificates={certificates} />
 
-      <FooterSection profile={profile} />
+        <ContactSection profile={profile} />
+
+        <FooterSection profile={profile} />
+      </div>
     </div>
   );
 }

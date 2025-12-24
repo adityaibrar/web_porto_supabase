@@ -9,7 +9,7 @@ interface FooterSectionProps {
 
 export function FooterSection({ profile }: FooterSectionProps) {
   return (
-    <footer className="py-12 px-6 border-t border-gray-800">
+    <footer className="py-12 px-6 border-t border-gray-800/50 relative">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
