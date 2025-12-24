@@ -36,17 +36,21 @@ export default function SmoothScrollProvider({
 
     lenisRef.current = lenis;
 
+    // Stop/start Lenis for modal
+    const handleModalOpen = () => lenis.stop();
+    const handleModalClose = () => lenis.start();
+
+    window.addEventListener("modal-open", handleModalOpen);
+    window.addEventListener("modal-close", handleModalClose);
+
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
     // Use GSAP ticker for smooth animation
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
-    // Handle anchor links with Lenis
+    // Handle anchor links
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]');
@@ -67,7 +71,8 @@ export default function SmoothScrollProvider({
 
     document.addEventListener("click", handleAnchorClick);
 
-    // Setup scroll animations
+    // Setup scroll animations - optimized
+    let scrollTriggers: ScrollTrigger[] = [];
     const setupScrollAnimations = () => {
       const sections = document.querySelectorAll("section");
       sections.forEach((section) => {
@@ -75,7 +80,7 @@ export default function SmoothScrollProvider({
           ".animate-on-scroll, .fade-in-up, .fade-in-left, .fade-in-right"
         );
         elements.forEach((element) => {
-          gsap.fromTo(
+          const animation = gsap.fromTo(
             element,
             { opacity: 0, y: 50 },
             {
@@ -83,26 +88,33 @@ export default function SmoothScrollProvider({
               y: 0,
               duration: 0.8,
               ease: "power3.out",
-              scrollTrigger: {
-                trigger: element,
-                start: "top 85%",
-                end: "bottom 15%",
-                toggleActions: "play none none reverse",
-              },
+              paused: true,
             }
           );
+
+          const trigger = ScrollTrigger.create({
+            trigger: element,
+            start: "top 85%",
+            end: "bottom 15%",
+            onEnter: () => animation.play(),
+            onLeaveBack: () => animation.reverse(),
+          });
+
+          scrollTriggers.push(trigger);
         });
       });
     };
 
-    // Small delay to ensure DOM is ready
+    // Delay to ensure DOM is ready
     const timer = setTimeout(setupScrollAnimations, 100);
 
     return () => {
       clearTimeout(timer);
       document.removeEventListener("click", handleAnchorClick);
+      window.removeEventListener("modal-open", handleModalOpen);
+      window.removeEventListener("modal-close", handleModalClose);
       lenis.destroy();
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      scrollTriggers.forEach((trigger) => trigger.kill());
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
   }, []);

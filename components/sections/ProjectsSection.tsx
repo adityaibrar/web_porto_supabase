@@ -55,6 +55,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
     setSelectedProject(project);
     setShowScrollIndicator(true);
 
+    // Dispatch event to stop Lenis
+    window.dispatchEvent(new Event("modal-open"));
+
     // Hide scroll indicator after 3 seconds
     setTimeout(() => {
       setShowScrollIndicator(false);
@@ -64,6 +67,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const closeModal = () => {
     setSelectedProject(null);
     setShowScrollIndicator(false);
+
+    // Dispatch event to restart Lenis
+    window.dispatchEvent(new Event("modal-close"));
   };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -226,11 +232,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ type: "spring", damping: 20, stiffness: 300 }}
-                className="bg-gray-900/95 border border-gray-800 rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto backdrop-blur-md relative"
-                style={{
-                  msOverflowStyle: "none",
-                  scrollbarWidth: "none",
-                }}
+                className="bg-gray-900/95 border border-gray-800 rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto backdrop-blur-md relative scrollbar-hide"
+                data-lenis-prevent
+                role="dialog"
                 onScroll={handleScroll}
                 onClick={(e) => e.stopPropagation()}
               >

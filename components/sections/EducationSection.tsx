@@ -62,50 +62,22 @@ export function EducationSection({ education }: EducationSectionProps) {
                   key={edu.id}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
+                  whileHover={{ scale: 1.02, y: -5 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300">
+                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
                     <CardHeader>
                       <div className="flex items-center space-x-4">
-                        <div className={`p-3 ${colorScheme.bg} rounded-lg`}>
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.6 }}
+                          className={`p-3 ${colorScheme.bg} rounded-lg group-hover:shadow-lg`}
+                        >
                           <GraduationCap
                             className={`w-8 h-8 ${colorScheme.text}`}
                           />
-                        </div>
+                        </motion.div>
 
-                        {/* <div className="flex-1 flex flex-col md:flex-row md:justify-between md:items-start gap-2">
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-2">
-                              {edu.degree}
-                            </h3>
-                            <p className={`font-medium ${colorScheme.text}`}>
-                              {edu.institution}
-                            </p>
-                            {edu.field_of_study && (
-                              <p className="text-gray-300 text-sm mt-1 self-start">
-                                {edu.field_of_study}
-                              </p>
-                            )}
-                          </div>
-                          <div className="flex flex-col items-end gap-2">
-                            <Badge
-                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap`}
-                            >
-                              {new Date(edu.start_date).getFullYear()} -{" "}
-                              {edu.end_date
-                                ? new Date(edu.end_date).getFullYear()
-                                : "Present"}
-                            </Badge>
-                            {edu.gpa && (
-                              <Badge
-                                variant="secondary"
-                                className="bg-gray-800 text-gray-300 text-xs md:text-sm"
-                              >
-                                GPA: {edu.gpa}
-                              </Badge>
-                            )}
-                          </div>
-                        </div> */}
                         <div className="flex-1 flex flex-col md:flex-row md:justify-between md:items-start gap-2">
                           <div>
                             <h3 className="text-xl font-bold text-white mb-2">
@@ -116,21 +88,25 @@ export function EducationSection({ education }: EducationSectionProps) {
                             </p>
                           </div>
                           <div className="flex flex-col items-center gap-2">
-                            <Badge
-                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto hover:bg-inherit hover:text-inherit`}
-                            >
-                              {new Date(edu.start_date).getFullYear()} -{" "}
-                              {edu.end_date
-                                ? new Date(edu.end_date).getFullYear()
-                                : "Present"}
-                            </Badge>
-                            {edu.gpa && (
+                            <motion.div whileHover={{ scale: 1.05 }}>
                               <Badge
-                                variant="secondary"
-                                className="bg-gray-800 text-gray-300 text-xs md:text-sm whitespace-nowrap self-start md:self-auto"
+                                className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} whitespace-nowrap self-start md:self-auto hover:bg-inherit hover:text-inherit cursor-pointer`}
                               >
-                                GPA: {edu.gpa}
+                                {new Date(edu.start_date).getFullYear()} -{" "}
+                                {edu.end_date
+                                  ? new Date(edu.end_date).getFullYear()
+                                  : "Present"}
                               </Badge>
+                            </motion.div>
+                            {edu.gpa && (
+                              <motion.div whileHover={{ scale: 1.05 }}>
+                                <Badge
+                                  variant="secondary"
+                                  className="bg-gray-800 text-gray-300 text-xs md:text-sm whitespace-nowrap self-start md:self-auto hover:bg-gray-700 cursor-pointer"
+                                >
+                                  GPA: {edu.gpa}
+                                </Badge>
+                              </motion.div>
                             )}
                           </div>
                         </div>
