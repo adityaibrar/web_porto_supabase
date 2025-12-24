@@ -1,31 +1,28 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  FileText,
-  MousePointer2,
-  Terminal,
-} from "lucide-react";
+import { Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Profile } from "@/types/types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, memo } from "react";
 
 interface HeroSectionProps {
   profile: Profile | null;
 }
 
-export function HeroSection({ profile }: HeroSectionProps) {
+function HeroSectionComponent({ profile }: HeroSectionProps) {
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
 
-  // Data Titles persis egagofur.com
-  const titles = profile?.title?.split("|").map((t) => t.trim()) || [];
+  // Memoize titles array
+  const titles = useMemo(
+    () => profile?.title?.split("|").map((t) => t.trim()) || [],
+    [profile?.title]
+  );
 
   // Title Rotation Logic
   useEffect(() => {
+    if (titles.length === 0) return;
     const interval = setInterval(() => {
       setCurrentTitleIndex((prev) => (prev + 1) % titles.length);
     }, 2500);
@@ -138,6 +135,8 @@ export function HeroSection({ profile }: HeroSectionProps) {
                 }
                 alt="Profile"
                 fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                 className="object-cover"
               />
 
@@ -164,3 +163,6 @@ export function HeroSection({ profile }: HeroSectionProps) {
     </section>
   );
 }
+
+export const HeroSection = memo(HeroSectionComponent);
+HeroSection.displayName = "HeroSection";
