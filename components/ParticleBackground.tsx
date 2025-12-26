@@ -1,15 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  //   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [isReady, setIsReady] = useState(false);
 
-  // Title Rotation Logic
+  // Delay particle animation until after initial render to improve LCP
+  useEffect(() => {
+    // Start animation after a short delay to prioritize LCP
+    const timeout = setTimeout(() => {
+      setIsReady(true);
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, []);
 
   // Canvas Particles Background
   useEffect(() => {
+    if (!isReady) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -43,6 +52,7 @@ export function ParticleBackground() {
       });
     }
 
+    let animationId: number;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -76,12 +86,15 @@ export function ParticleBackground() {
         });
       });
 
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
     animate();
-    return () => window.removeEventListener("resize", resizeCanvas);
-  }, []);
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationId);
+    };
+  }, [isReady]);
 
   return (
     <>

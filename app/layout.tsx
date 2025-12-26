@@ -7,6 +7,7 @@ import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

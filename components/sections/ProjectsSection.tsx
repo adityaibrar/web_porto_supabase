@@ -106,16 +106,16 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                 >
                   <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/30 transition-all duration-300 group hover:scale-105 h-full cursor-pointer">
-                    <div className="relative overflow-hidden rounded-t-lg">
+                    <div className="relative overflow-hidden rounded-t-lg h-48">
                       <Image
-                        width={500}
-                        height={48}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         src={
                           project.image_url ||
                           "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=500"
                         }
                         alt={project.title}
-                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                       <div className="absolute top-4 left-4">
@@ -284,16 +284,16 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 {/* Modal Content */}
                 <div className="p-6">
                   {/* Project Image */}
-                  <div className="mb-6">
+                  <div className="mb-6 relative h-64 md:h-80">
                     <Image
-                      width={500}
-                      height={64}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 800px"
                       src={
                         selectedProject.image_url ||
                         "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=800"
                       }
                       alt={selectedProject.title}
-                      className="w-full h-64 md:h-80 object-cover rounded-lg"
+                      className="object-cover rounded-lg"
                     />
                   </div>
 
