@@ -62,14 +62,12 @@ export function EducationSection({ education }: EducationSectionProps) {
                   key={edu.id}
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.02, y: -5 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
+                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300">
                     <CardHeader>
                       <div className="flex items-center space-x-4">
                         <motion.div
-                          whileHover={{ scale: 1.1 }}
                           transition={{ duration: 0.6 }}
                           className={`p-3 ${colorScheme.bg} rounded-lg group-hover:shadow-lg`}
                         >

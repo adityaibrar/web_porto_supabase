@@ -279,6 +279,7 @@ export function CertificatesManager({
                     src={editingCertificate.image_url}
                     alt="Current certificate image"
                     className="w-32 h-20 object-cover rounded"
+                    blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                   />
                 </div>
               )}

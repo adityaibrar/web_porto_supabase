@@ -62,7 +62,6 @@ export function NavigationBar({ profile }: NavigationBarProps) {
       document
         .getElementById(sectionId)
         ?.scrollIntoView({ behavior: "smooth" });
-      // onScrollToSection(sectionId);
     }, 100);
   };
 
@@ -75,14 +74,12 @@ export function NavigationBar({ profile }: NavigationBarProps) {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <button
             className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+            onClick={() => handleNavClick("hero")}
           >
             {profile?.name || "Flutter Dev"}
-          </motion.div>
-
+          </button>
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (

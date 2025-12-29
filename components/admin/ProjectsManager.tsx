@@ -282,6 +282,7 @@ export function ProjectsManager({
                     src={editingProject.image_url}
                     alt="Current project image"
                     className="w-32 h-20 object-cover rounded"
+                    blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                   />
                 </div>
               )}
@@ -334,6 +335,7 @@ export function ProjectsManager({
                       }
                       alt={project.title}
                       className="w-full h-32 object-cover"
+                      blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                     />
                     {project.featured && (
                       <Badge className="absolute top-2 right-2 bg-yellow-500 text-black">

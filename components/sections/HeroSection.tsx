@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal } from "lucide-react";
+import { Terminal, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Profile } from "@/types/types";
@@ -113,6 +113,43 @@ function HeroSectionComponent({ profile }: HeroSectionProps) {
                   Get in Touch
                 </Button>
               </a>
+
+              {/* Social icons bawah tombol */}
+              <div className="flex items-center gap-4 mt-4 md:mt-0 md:ml-4">
+                {profile?.github_url && (
+                  <a
+                    href={profile.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors"
+                  >
+                    <Github className="w-6 h-6" />
+                  </a>
+                )}
+                {profile?.linkedin_url && (
+                  <a
+                    href={profile.linkedin_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors"
+                  >
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                )}
+                {profile?.email && (
+                  <a
+                    href={profile.email}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="text-gray-400 hover:text-pink-400 transition-colors"
+                  >
+                    <Mail className="w-6 h-6" />
+                  </a>
+                )}
+              </div>
             </div>
           </motion.div>
 
@@ -138,6 +175,7 @@ function HeroSectionComponent({ profile }: HeroSectionProps) {
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                 className="object-cover"
+                blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
               />
 
               {/* Overlay Gradient bawah untuk teks (opsional) */}

@@ -116,6 +116,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                         }
                         alt={project.title}
                         className="object-cover transition-transform duration-300 group-hover:scale-110"
+                        blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                       <div className="absolute top-4 left-4">
@@ -294,6 +295,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                       }
                       alt={selectedProject.title}
                       className="object-cover rounded-lg"
+                      blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                     />
                   </div>
 
