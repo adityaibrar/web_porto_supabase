@@ -107,7 +107,7 @@ export function ContactSection({ profile }: ContactSectionProps) {
               <motion.div className="flex items-center space-x-4 p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-pointer group">
                 <motion.div
                   transition={{ duration: 0.6 }}
-                  className="p-3 bg-cyan-500/20 rounded-lg group-hover:shadow-lg group-hover:shadow-cyan-500/30"
+                  className="p-3 bg-cyan-500/20 rounded-lg group-hover:shadow-cyan-500/30"
                 >
                   <Mail className="w-6 h-6 text-cyan-400" />
                 </motion.div>
@@ -124,7 +124,7 @@ export function ContactSection({ profile }: ContactSectionProps) {
               <motion.div className="flex items-center space-x-4 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/50 transition-all cursor-pointer group">
                 <motion.div
                   transition={{ duration: 0.6 }}
-                  className="p-3 bg-blue-500/20 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/30"
+                  className="p-3 bg-blue-500/20 rounded-lg group-hover:shadow-blue-500/30"
                 >
                   <Phone className="w-6 h-6 text-blue-400" />
                 </motion.div>
@@ -140,9 +140,8 @@ export function ContactSection({ profile }: ContactSectionProps) {
             {profile?.location && (
               <motion.div className="flex items-center space-x-4 p-4 rounded-lg bg-purple-500/10 border border-purple-500/20 hover:border-purple-500/50 transition-all cursor-pointer group">
                 <motion.div
-                  whileHover={{ scale: 1.2 }}
                   transition={{ duration: 0.3 }}
-                  className="p-3 bg-purple-500/20 rounded-lg group-hover:shadow-lg group-hover:shadow-purple-500/30"
+                  className="p-3 bg-purple-500/20 rounded-lg group-hover:shadow-purple-500/30"
                 >
                   <MapPin className="w-6 h-6 text-purple-400" />
                 </motion.div>
@@ -224,7 +223,7 @@ export function ContactSection({ profile }: ContactSectionProps) {
                   >
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 group"
+                      className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white transition-all duration-300 group"
                     >
                       <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
                       Send to WhatsApp
