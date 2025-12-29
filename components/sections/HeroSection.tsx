@@ -138,6 +138,7 @@ function HeroSectionComponent({ profile }: HeroSectionProps) {
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                 className="object-cover"
+                blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
               />
 
               {/* Overlay Gradient bawah untuk teks (opsional) */}

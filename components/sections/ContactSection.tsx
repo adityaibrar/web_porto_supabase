@@ -104,12 +104,8 @@ export function ContactSection({ profile }: ContactSectionProps) {
             className="space-y-8"
           >
             {profile?.email && (
-              <motion.div
-                whileHover={{ scale: 1.05, x: 10 }}
-                className="flex items-center space-x-4 p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-pointer group"
-              >
+              <motion.div className="flex items-center space-x-4 p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20 hover:border-cyan-500/50 transition-all cursor-pointer group">
                 <motion.div
-                  whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                   className="p-3 bg-cyan-500/20 rounded-lg group-hover:shadow-lg group-hover:shadow-cyan-500/30"
                 >
@@ -125,12 +121,8 @@ export function ContactSection({ profile }: ContactSectionProps) {
             )}
 
             {profile?.phone && (
-              <motion.div
-                whileHover={{ scale: 1.05, x: 10 }}
-                className="flex items-center space-x-4 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/50 transition-all cursor-pointer group"
-              >
+              <motion.div className="flex items-center space-x-4 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 hover:border-blue-500/50 transition-all cursor-pointer group">
                 <motion.div
-                  whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                   className="p-3 bg-blue-500/20 rounded-lg group-hover:shadow-lg group-hover:shadow-blue-500/30"
                 >
@@ -146,10 +138,7 @@ export function ContactSection({ profile }: ContactSectionProps) {
             )}
 
             {profile?.location && (
-              <motion.div
-                whileHover={{ scale: 1.05, x: 10 }}
-                className="flex items-center space-x-4 p-4 rounded-lg bg-purple-500/10 border border-purple-500/20 hover:border-purple-500/50 transition-all cursor-pointer group"
-              >
+              <motion.div className="flex items-center space-x-4 p-4 rounded-lg bg-purple-500/10 border border-purple-500/20 hover:border-purple-500/50 transition-all cursor-pointer group">
                 <motion.div
                   whileHover={{ scale: 1.2 }}
                   transition={{ duration: 0.3 }}

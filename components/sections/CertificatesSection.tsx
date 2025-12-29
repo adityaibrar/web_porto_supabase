@@ -65,16 +65,12 @@ export function CertificatesSection({
                   key={cert.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.03, y: -5 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                 >
-                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 group">
+                  <Card className="bg-gray-900/50 border-gray-800 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300">
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-4">
                         <motion.div
-                          whileHover={{
-                            scale: 1.1,
-                          }}
                           transition={{ duration: 0.5 }}
                           className={`p-3 ${colorScheme.bg} rounded-lg group-hover:shadow-lg`}
                         >
@@ -87,19 +83,14 @@ export function CertificatesSection({
                           <p className="text-gray-300 text-sm mb-2">
                             {cert.issuer}
                           </p>
-                          <motion.div whileHover={{ scale: 1.05 }}>
-                            <Badge
-                              className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} cursor-pointer hover:bg-white-400 hover:border-white`}
-                            >
-                              {new Date(cert.issue_date).getFullYear()}
-                            </Badge>
-                          </motion.div>
+                          <Badge
+                            className={`${colorScheme.bg} ${colorScheme.text} ${colorScheme.border} cursor-pointer hover:bg-white-400 hover:border-white`}
+                          >
+                            {new Date(cert.issue_date).getFullYear()}
+                          </Badge>
                         </div>
                         {cert.credential_url && (
-                          <motion.div
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            whileTap={{ scale: 0.9 }}
-                          >
+                          <motion.div whileTap={{ scale: 0.9 }}>
                             <Button
                               asChild
                               size="sm"

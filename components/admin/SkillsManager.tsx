@@ -193,6 +193,7 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
                     src={editingSkill.icon_url}
                     alt="Current icon"
                     className="w-8 h-8 object-contain"
+                    blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                   />
                 </div>
               )}
@@ -231,6 +232,7 @@ export function SkillsManager({ skills, onSkillsUpdate }: SkillsManagerProps) {
                       src={skill.icon_url}
                       alt={skill.name}
                       className="w-8 h-8 object-contain"
+                      blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                     />
                   ) : (
                     <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">

@@ -68,6 +68,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                           src={skill.icon_url}
                           alt={skill.name}
                           className="w-5 h-5 object-contain"
+                          blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                         />
                       ) : (
                         <Code className="w-4 h-4 text-cyan-400" />
@@ -114,6 +115,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                             src={skill.icon_url}
                             alt={skill.name}
                             className="w-5 h-5 object-contain"
+                            blurDataURL="data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
                           />
                         ) : (
                           <Code className="w-4 h-4 text-cyan-400" />
